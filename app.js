@@ -1,16 +1,16 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 const app = express();
-const compression = require('compression');
-const routes = require('./routes/index');
-const config = require('./config/config');
+const compression = require("compression");
+const routes = require("./routes/index");
+const config = require("./config/config");
 
 app.use(compression()); // compress all responses
-app.use('/', routes); // use the routes dir to do all the dirty work
+app.use("/", routes); // use the routes dir to do all the dirty work
 
-config.app.ports.forEach((port) => {
+config.app.ports.map((port) => {
   app.listen(port, () => {
-    console.log('The ' + config.app.envName + ' server is running on port ' + port + '.');
+    console.log(`The ${config.app.envName} server is running on port ${port}.`);
   });
 });
